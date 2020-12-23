@@ -6,8 +6,7 @@
 use std::collections::HashMap;
 
 
-#[allow(dead_code)]
-fn two_sum(nums: Vec<i32>, target: i32) -> Option<(usize, usize)> {
+pub fn two_sum(nums: Vec<i32>, target: i32) -> Option<(usize, usize)> {
     // Maps the complement of each number we've seen to the number's index
     // If a number is already a key, we know we've seen its complement 
     let mut seen = HashMap::new();

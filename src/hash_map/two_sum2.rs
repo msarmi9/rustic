@@ -7,8 +7,7 @@
 use std::collections::HashMap;
 
 
-#[allow(dead_code)]
-fn two_sum_ascending(nums: Vec<i32>, target: i32) -> Option<(usize, usize)> {
+pub fn two_sum_ascending(nums: Vec<i32>, target: i32) -> Option<(usize, usize)> {
     let mut seen = HashMap::new();
     for (i, a) in nums.iter().enumerate() {
         if let Some(&j) = seen.get(a) {
