@@ -1,4 +1,4 @@
-// Two Sum Problem Sorted
+// Two Sum Sorted
 //
 // Given an array `nums` of ints sorted in ascending order and an int `target`, return the indices
 // of the two numbers whose sum is `target`. You may assume there is only one such pair and you may

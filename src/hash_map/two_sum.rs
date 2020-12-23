@@ -1,4 +1,4 @@
-// Two Sum Problem
+// Two Sum 
 //
 // Given an array `nums` of ints and an int `target`, return the indices of the two numbers whose
 // sum is `target`. You may assume there is only one such pair.
