@@ -1,8 +1,8 @@
-// Two Sum Sorted
-//
-// Given an array `nums` of ints sorted in ascending order and an int `target`, return the indices
-// of the two numbers whose sum is `target`. You may assume there is only one such pair and you may
-// not use the same number twice.
+//! Two Sum Sorted
+//!
+//! Given an array `nums` of ints sorted in ascending order and an int `target`, return the indices
+//! of the two numbers whose sum is `target`. You may assume there is only one such pair and you may
+//! not use the same number twice.
 
 use std::collections::HashMap;
 
