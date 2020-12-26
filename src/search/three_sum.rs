@@ -1,7 +1,7 @@
-// Three Sum
-//
-// Given an array `nums` of ints, are there elements a, b, c such that a + b + c = 0?
-// Find all such unique triples in the array `nums`.
+//! Three Sum
+//!
+//! Given an array `nums` of ints, are there elements a, b, c such that a + b + c = 0?
+//! Find all such unique triples in the array `nums`.
 
 
 /// Searches `nums` for all pairs of entries whose sum equals `target`.
