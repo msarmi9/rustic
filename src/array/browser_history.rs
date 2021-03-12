@@ -69,13 +69,22 @@ impl BrowserHistory {
     }
 
     pub fn back(&mut self, steps: usize) {
-        // Oldest is always to the left of current, so we don't need to wrap around
-        self.current = self.oldest.max(self.current.saturating_sub(steps));
+        if self.current >= self.oldest {
+            self.current -= steps.min(self.current - self.oldest);
+        } else {
+            let (cur, old, cap) = (self.current as i32, self.oldest as i32, self.capacity as i32);
+            let current = cur - (steps as i32).min(cur + cap - old);
+            self.current = current.rem_euclid(cap) as usize;
+        }
     }
 
     pub fn forward(&mut self, steps: usize) {
-        // Newest may be to the left or right of current, so we need to wrap around
-        self.current = self.newest.max((self.current + steps) % self.capacity);
+        if self.current <= self.newest {
+            self.current += steps.min(self.newest - self.current);
+        } else {
+            self.current += steps.min(self.capacity - self.current + self.newest);
+            self.current = self.current.rem_euclid(self.capacity);
+        }
     }
 }
 
@@ -140,5 +149,21 @@ mod tests {
         browser.forward(5);
         assert_eq!(browser.newest, 2);
         assert_eq!(browser.current, 2);
+    }
+
+    #[test]
+    fn current_at_index_zero_becomes_last_index_after_calling_back_one() {
+        let mut browser = browser_with_full_capacity(3);
+        browser.visit("3".to_string());
+        browser.back(1);
+        assert_eq!(browser.current, 2);
+    }
+
+    #[test]
+    fn back_two_forward_one_moves_current_one_left_of_newest() {
+        let mut browser = browser_with_full_capacity(5);
+        browser.back(2);
+        browser.forward(1);
+        assert_eq!(browser.current, browser.newest - 1);
     }
 }
