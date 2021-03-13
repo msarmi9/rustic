@@ -72,9 +72,13 @@ impl BrowserHistory {
         if self.current >= self.oldest {
             self.current -= steps.min(self.current - self.oldest);
         } else {
-            let (cur, old, cap) = (self.current as i32, self.oldest as i32, self.capacity as i32);
-            let current = cur - (steps as i32).min(cur + cap - old);
-            self.current = current.rem_euclid(cap) as usize;
+            let steps = steps as i32;
+            let oldest = self.oldest as i32;
+            let capacity = self.capacity as i32;
+            let mut current = self.current as i32;
+
+            current -= steps.min(current + capacity - oldest); 
+            self.current = current.rem_euclid(capacity) as usize;
         }
     }
 
